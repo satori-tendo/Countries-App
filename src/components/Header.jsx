@@ -5,20 +5,27 @@ import moon from '../assets/images/moon.png'
 function Header() {
   return (
     <HeaderWrapper>
-      <HeaderTitle>CountriesApp</HeaderTitle>
-      <Mode>
-        <ModeImage src={moon} alt="" />
-        <ModeTitle>Dark Mode</ModeTitle>
-      </Mode>
+      <HeaderContainer>
+        <HeaderTitle>CountriesApp</HeaderTitle>
+        <Mode>
+          <ModeImage src={moon} alt="" />
+          <ModeTitle>Dark Mode</ModeTitle>
+        </Mode>
+      </HeaderContainer>
     </HeaderWrapper>
   )
 }
 
 const HeaderWrapper = styled.div`
+  font-weight: 600;
+  background-color: #FFF;
+`
+const HeaderContainer = styled.div`
+  max-width: 1440px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-weight: 600;
 `
 const HeaderTitle = styled.h1`
   font-weight: 800;
