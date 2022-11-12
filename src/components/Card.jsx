@@ -21,11 +21,6 @@ const CardWrapper = styled.div`
     background-color: #fff;
     background-size: 300px;
     border-radius: 15px;
-    margin-right: 53px;
-    margin-bottom: 70px;
-    &:nth-child(4n) {
-        margin-right: 0px;
-    }
 `
 const Image = styled.img`
     border-radius: 15px 15px 0px 0px;

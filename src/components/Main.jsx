@@ -39,11 +39,27 @@ const MainWrappper = styled.div`
 const MainContainer = styled.div`
     max-width: 1440px;
     margin: 0 auto;
+    @media (max-width: 1460px) {
+        max-width: 1200px;
+    }
+    @media (max-width: 1200px) {
+        max-width: 970px;
+    }
+    @media (max-width: 992px) {
+        max-width: 750px;
+    }
+    @media (max-width: 767px) {
+        max-width: none;
+    }
 `
 const FirstRow = styled.div`
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-bottom: 70px;
+    @media (max-width: 767px) {
+        
+    }
 `
 const Input = styled.input`
     font-family: 'Nunito Sans';
@@ -55,6 +71,9 @@ const Input = styled.input`
     outline: none;
     border-radius: 10px;
     box-shadow: 0px 0px 3px gray;
+    @media (max-width: 720px) {
+     margin-bottom: 30px;
+    }
 `
 const Select = styled.select`
     font-family: 'Nunito Sans';
@@ -68,7 +87,28 @@ const Select = styled.select`
     box-shadow: 0px 0px 3px gray;
 `
 const Countries = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 320px);
+    column-gap: 53px;
+    row-gap: 70px;
+    @media (max-width: 1460px) {
+        grid-template-columns: repeat(3, 320px);
+        column-gap: 80px;
+        max-width: 1100px;
+    }
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(2, 320px);
+        column-gap: 110px;
+        max-width: 750px;
+    }
+    @media (max-width: 992px) {
+
+    }
+    @media (max-width: 767px) {
+        grid-template-columns: 320px;
+        max-width: 320px;
+    }
 `
 export default Main
