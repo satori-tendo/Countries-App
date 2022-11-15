@@ -5,7 +5,7 @@ import Card from './Card'
 function Main() {
     return (
         <MainWrappper >
-            <MainContainer>
+            <Container>
                 <FirstRow>
                     <Input placeholder='Search for a country...' />
                     <Select>
@@ -26,7 +26,7 @@ function Main() {
                     <Card />
                     <Card />
                 </Countries>
-            </MainContainer>
+            </Container>
         </MainWrappper>
     )
 }
@@ -36,7 +36,7 @@ function Main() {
 const MainWrappper = styled.div`
     padding: 60px 0px 0px 0px;
 `
-const MainContainer = styled.div`
+export const Container = styled.div`
     max-width: 1440px;
     margin: 0 auto;
     @media (max-width: 1460px) {
