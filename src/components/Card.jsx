@@ -2,15 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import us from '../assets/images/us.png'
 
-function Card() {
+function Card(props) {
   return (
     <CardWrapper>
-        <Image src={us} alt="" />
+        <Image src={props.flag} alt="" />
         <Info>
-            <Country>United States of America</Country>
-            <Paragraph>Population: <span> </span> <Subparagraph>323.947.000</Subparagraph></Paragraph>
-            <Paragraph>Region: <span> </span> <Subparagraph>Americas</Subparagraph></Paragraph>
-            <Paragraph>Capital: <span> </span> <Subparagraph>Washington, D.C</Subparagraph></Paragraph>
+            <Country>{props.name}</Country>
+            <Paragraph>Population: <span> </span> <Subparagraph>{props.population}</Subparagraph></Paragraph>
+            <Paragraph>Region: <span> </span> <Subparagraph>{props.region}</Subparagraph></Paragraph>
+            <Paragraph>Capital: <span> </span> <Subparagraph>{props.capital}</Subparagraph></Paragraph>
         </Info>
     </CardWrapper>
   )
@@ -24,6 +24,8 @@ const CardWrapper = styled.div`
 `
 const Image = styled.img`
     border-radius: 15px 15px 0px 0px;
+    width: 320px;
+    height: 180px;
 `
 const Info = styled.div`
     padding: 10px 0px 30px 30px;

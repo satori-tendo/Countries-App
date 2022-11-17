@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import Card from './Card'
 
-function Main() {
+function Main(props) {
+
     return (
         <MainWrappper >
             <Container>
@@ -18,13 +19,9 @@ function Main() {
                     </Select>
                 </FirstRow>
                 <Countries>
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
+                    {props.countries.map(i => <Card flag={i.flags.png} key={props.countries[i]}
+                        name={i.name.common} population={i.population} region={i.region}
+                        capital={i.capital}/>)}
                 </Countries>
             </Container>
         </MainWrappper>
