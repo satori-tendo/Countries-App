@@ -1,16 +1,17 @@
-import React from 'react'
+import React, {FC} from 'react'
 import styled from 'styled-components'
 import us from '../assets/images/us.png'
+import { Country } from './Main'
 
-function Card(props) {
+const Card: FC<Country> = ({flags, name, population, region, capital}) => {
   return (
     <CardWrapper>
-        <Image src={props.flag} alt="" />
+        <Image src={flags} alt="" />
         <Info>
-            <Country>{props.name}</Country>
-            <Paragraph>Population: <span> </span> <Subparagraph>{props.population}</Subparagraph></Paragraph>
-            <Paragraph>Region: <span> </span> <Subparagraph>{props.region}</Subparagraph></Paragraph>
-            <Paragraph>Capital: <span> </span> <Subparagraph>{props.capital}</Subparagraph></Paragraph>
+            <CountryWrapper>{name}</CountryWrapper>
+            <Paragraph>Population: <span> </span> <Subparagraph>{population}</Subparagraph></Paragraph>
+            <Paragraph>Region: <span> </span> <Subparagraph>{region}</Subparagraph></Paragraph>
+            <Paragraph>Capital: <span> </span> <Subparagraph>{capital}</Subparagraph></Paragraph>
         </Info>
     </CardWrapper>
   )
@@ -31,7 +32,7 @@ const Image = styled.img`
 const Info = styled.div`
     padding: 10px 0px 30px 30px;
 `
-const Country = styled.div`
+const CountryWrapper = styled.div`
     font-size: 20px;
     font-weight: 800;
     margin: 10px 0px 10px 0px;

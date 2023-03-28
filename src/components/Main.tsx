@@ -66,7 +66,7 @@ const Main: FC = () => {
                 </FirstRow>
                 <Countries>
                     
-                    {countries.map(i => <Card flag={i.flags.png} key={countries[i]}
+                    {countries.map(i => <Card flags={i.flags.png} key={countries[i]}
                         name={i.name.common} population={i.population} region={i.region}
                         capital={i.capital}/>)}
                 </Countries>
