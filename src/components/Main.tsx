@@ -1,25 +1,44 @@
-import React from 'react'
-import { FC } from 'react'
-import { useState } from 'react'
+import React, {useEffect, useState, FC} from 'react'
 import styled from 'styled-components'
 import { Country } from '../App'
 import Card from './Card.tsx'
+import axios from 'axios'
+import Loading from './Loading'
 
 
-type MainProps = {
-    countries: Country[]
-}
+export interface Country {
+    name: {common: string, official: string}
+    flags: {png: string}
+    population: number
+    capital: string[]
+    region: string
+  }
 
-const Main: FC<MainProps> = ({countries}) => {
+const Main: FC = () => {
+
+
+    const [countries, setCountries] = useState<Country[]>([])
+    const [isFetching, setIsFetching] = useState<boolean>(true)
 
     const [inputValue, setInputValue] = useState<string>('')
     const inputOnChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setInputValue(e.target.value)
     }
 
+    useEffect(() => { // посмотреть как типизировать. если это вообще типизируется
+        axios.get('https://restcountries.com/v3.1/all')
+          .then(response => {
+            setCountries(response.data)
+            setIsFetching(false)
+          })
+      }, [])
+    
+    console.log(countries);
 
     return (
         <MainWrappper >
+            {isFetching && <Loading />}
+            {!isFetching && 
             <Container>
                 <FirstRow>
                     <Input name='input' placeholder='Search for a country...' value={inputValue}
@@ -40,7 +59,7 @@ const Main: FC<MainProps> = ({countries}) => {
                         name={i.name.common} population={i.population} region={i.region}
                         capital={i.capital}/>)}
                 </Countries>
-            </Container>
+            </Container>}
         </MainWrappper>
     )
 }
