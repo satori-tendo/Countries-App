@@ -1,14 +1,30 @@
 import React from 'react'
+import { FC } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
-import Card from './Card'
+import { Country } from '../App'
+import Card from './Card.tsx'
 
-function Main(props) {
+
+type MainProps = {
+    countries: Country[]
+}
+
+const Main: FC<MainProps> = ({countries}) => {
+
+    const [inputValue, setInputValue] = useState<string>('')
+    const inputOnChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        setInputValue(e.target.value)
+    }
+
 
     return (
         <MainWrappper >
             <Container>
                 <FirstRow>
-                    <Input placeholder='Search for a country...' />
+                    <Input name='input' placeholder='Search for a country...' value={inputValue}
+                        onChange={inputOnChange} />
+                        
                     <Select>
                         <option value="">Filter by Region</option>
                         <option value="1">Africa</option>
@@ -19,7 +35,8 @@ function Main(props) {
                     </Select>
                 </FirstRow>
                 <Countries>
-                    {props.countries.map(i => <Card flag={i.flags.png} key={props.countries[i]}
+                    
+                    {countries.map(i => <Card flag={i.flags.png} key={countries[i]}
                         name={i.name.common} population={i.population} region={i.region}
                         capital={i.capital}/>)}
                 </Countries>
@@ -58,7 +75,7 @@ const FirstRow = styled.div`
         
     }
 `
-const Input = styled.input`
+const Input = styled.input.attrs({type: 'text', })`
     font-family: 'Nunito Sans';
     font-weight: 600;
     font-size: 20px;

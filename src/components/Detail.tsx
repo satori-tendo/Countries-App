@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Container } from './Main'
+import { Container } from './Main.tsx'
 import arrow from '../assets/images/arrow.png'
 import flag from '../assets/images/bigflag.svg'
 

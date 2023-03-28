@@ -21,6 +21,7 @@ const CardWrapper = styled.div`
     background-color: #fff;
     background-size: 300px;
     border-radius: 15px;
+    cursor: pointer;
 `
 const Image = styled.img`
     border-radius: 15px 15px 0px 0px;
