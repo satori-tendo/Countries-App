@@ -1,6 +1,5 @@
 import React, {useEffect, useState, FC} from 'react'
 import styled from 'styled-components'
-import { Country } from '../App'
 import Card from './Card.tsx'
 import axios from 'axios'
 import Loading from './Loading'
@@ -33,6 +32,18 @@ const Main: FC = () => {
           })
       }, [])
     
+
+    const onKeyDownHandler: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+        if (e.key === 'Enter') {
+            setIsFetching(true)
+            axios.get(`https://restcountries.com/v3.1/name/${inputValue}`)
+                .then(response => {
+                    setCountries(response.data)
+                    setIsFetching(false)
+                })
+        }
+    }
+
     console.log(countries);
 
     return (
@@ -42,7 +53,7 @@ const Main: FC = () => {
             <Container>
                 <FirstRow>
                     <Input name='input' placeholder='Search for a country...' value={inputValue}
-                        onChange={inputOnChange} />
+                        onChange={inputOnChange} onKeyDown={onKeyDownHandler} />
                         
                     <Select>
                         <option value="">Filter by Region</option>
