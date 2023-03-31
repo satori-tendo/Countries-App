@@ -21,7 +21,7 @@ const Main: FC = () => {
 
     const [countries, setCountries] = useState<Country[]>([])
     const [isFetching, setIsFetching] = useState<boolean>(true)
-    const [isSearching, setIsSearching] = useState<boolean>(false)
+    const [selectedRegion, setSelectedRegion] = useState<string>('')
 
 
     const [inputValue, setInputValue] = useState<string>('')
@@ -29,13 +29,17 @@ const Main: FC = () => {
         setInputValue(e.target.value)
     }
 
-
-    useEffect(() => { // посмотреть как типизировать. если это вообще типизируется
+    const fetchingDefaultCountries = () => {
         axios.get('https://restcountries.com/v3.1/all')
           .then(response => {
             setCountries(response.data)
             setIsFetching(false)
-          })
+        })
+    }
+
+
+    useEffect(() => { // посмотреть как типизировать. если это вообще типизируется
+        fetchingDefaultCountries()
       }, [])
     
 
@@ -45,7 +49,18 @@ const Main: FC = () => {
         }
     }
 
-    console.log(countries);
+    const handleSelectChange: React.ChangeEventHandler<HTMLSelectElement> | undefined = (e) => {
+        const value: string = e.target.value 
+        console.log(value)
+        setIsFetching(true)
+        setSelectedRegion(value)
+        if(value == '') fetchingDefaultCountries()
+        else axios.get(`https://restcountries.com/v3.1/region/${value}`)
+            .then(response => {
+                setCountries(response.data)
+                setIsFetching(false)
+            })
+    }
  
     return (
         <MainWrappper >
@@ -56,13 +71,13 @@ const Main: FC = () => {
                         <Input name='input' placeholder='Search for a country...' value={inputValue}
                             onChange={inputOnChange} onKeyDown={onKeyDownHandler} /> 
                         
-                    <Select>
+                    <Select value={selectedRegion} onChange={handleSelectChange}>
                         <option value="">Filter by Region</option>
-                        <option value="1">Africa</option>
-                        <option value="2">America</option>
-                        <option value="3">Asia</option>
-                        <option value="4">Europe</option>
-                        <option value="5">Oceania</option>
+                        <option value="africa">Africa</option>
+                        <option value="america">America</option>
+                        <option value="asia">Asia</option>
+                        <option value="europe">Europe</option>
+                        <option value="oceania">Oceania</option>
                     </Select>
                 </FirstRow>
                 <Countries> 

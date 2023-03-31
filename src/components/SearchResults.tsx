@@ -28,9 +28,11 @@ const SearchResults: FC = () => {
                 setIsFetchingg(false)
             })
     }, [])
-    
+
   return (
-    <Container>
+
+      
+      <Container>
         <Link to={'/'}>
             <button>back</button>
         </Link>
