@@ -3,26 +3,32 @@ import styled from 'styled-components'
 import Card from './Card.tsx'
 import axios from 'axios'
 import Loading from './Loading'
+import { Link } from 'react-router-dom'
+import SearchResults from './SearchResults'
 
 
 export interface Country {
     name: {common: string, official: string}
-    flags: {png: string}
+    flags: string
     population: number
     capital: string[]
     region: string
-  }
+    key: number
+}
 
 const Main: FC = () => {
 
 
     const [countries, setCountries] = useState<Country[]>([])
     const [isFetching, setIsFetching] = useState<boolean>(true)
+    const [isSearching, setIsSearching] = useState<boolean>(false)
+
 
     const [inputValue, setInputValue] = useState<string>('')
     const inputOnChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setInputValue(e.target.value)
     }
+
 
     useEffect(() => { // посмотреть как типизировать. если это вообще типизируется
         axios.get('https://restcountries.com/v3.1/all')
@@ -35,25 +41,20 @@ const Main: FC = () => {
 
     const onKeyDownHandler: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
         if (e.key === 'Enter') {
-            setIsFetching(true)
-            axios.get(`https://restcountries.com/v3.1/name/${inputValue}`)
-                .then(response => {
-                    setCountries(response.data)
-                    setIsFetching(false)
-                })
+            window.location = '/search/' + inputValue
         }
     }
 
     console.log(countries);
-
+ 
     return (
         <MainWrappper >
             {isFetching && <Loading />}
             {!isFetching && 
             <Container>
                 <FirstRow>
-                    <Input name='input' placeholder='Search for a country...' value={inputValue}
-                        onChange={inputOnChange} onKeyDown={onKeyDownHandler} />
+                        <Input name='input' placeholder='Search for a country...' value={inputValue}
+                            onChange={inputOnChange} onKeyDown={onKeyDownHandler} /> 
                         
                     <Select>
                         <option value="">Filter by Region</option>
@@ -64,9 +65,8 @@ const Main: FC = () => {
                         <option value="5">Oceania</option>
                     </Select>
                 </FirstRow>
-                <Countries>
-                    
-                    {countries.map(i => <Card flags={i.flags.png} key={countries[i]}
+                <Countries> 
+                    {countries.map(i => <Card flags={i.flags.svg} key={countries[i]}
                         name={i.name.common} population={i.population} region={i.region}
                         capital={i.capital}/>)}
                 </Countries>
@@ -130,7 +130,7 @@ const Select = styled.select`
     border-radius: 10px;
     box-shadow: 0px 0px 3px gray;
 `
-const Countries = styled.div`
+export const Countries = styled.div` // use in SearchResults.tsx
     max-width: 1440px;
     margin: 0 auto;
     display: grid;

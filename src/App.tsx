@@ -4,25 +4,26 @@ import './App.css';
 import Detail from './components/Detail.tsx';
 import Header from './components/Header.tsx';
 import Main from './components/Main.tsx';
-import axios from 'axios';
-
+import SearchResults from './components/SearchResults';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 
 
 const App: FC = () => {
 
   const [mode, setMode] = useState<'main' | 'detail'>('main')
-  
-
-  
-  
 
   return (
-    <AppWrapper>
-      <Header />
-      {mode == 'main' && <Main />}
-      {mode == 'detail' && <Detail />}
-    </AppWrapper>
+    <BrowserRouter>
+      <AppWrapper>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/detail/:id" element={<Detail />} />
+          <Route path='/search/:string' element={<SearchResults />}/>
+        </Routes>
+      </AppWrapper>
+    </BrowserRouter>
   );
 }
 

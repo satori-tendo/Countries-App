@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import moon from '../assets/images/moon.png'
-
+import { Link } from 'react-router-dom'
 
 function Header() {
     return (
         <HeaderWrapper>
             <HeaderContainer>
-                <HeaderTitle>CountriesApp</HeaderTitle>
+                <Link to='/' style={{ textDecoration: 'none', color: 'black' }}><HeaderTitle>CountriesApp</HeaderTitle></Link>
                 <Mode>
                     <ModeImage src={moon} />
                     <ModeTitle>Dark Mode</ModeTitle>
