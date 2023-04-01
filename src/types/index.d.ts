@@ -1,4 +1,6 @@
-declare module 'styled-components';
+declare module '*.scss';
+declare module '*.css';
+declare module '*.sass';
 declare module "*.png";
 declare module "*.svg";
 declare module "*.jpeg";

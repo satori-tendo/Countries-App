@@ -1,0 +1,56 @@
+.wrapper {
+    padding-top: 50px;
+}
+.button {
+    display: flex;
+    align-items: center;
+    background-color: #FFF;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 7px gray;
+    cursor: pointer;
+    padding: 10px 50px 10px 20px;
+}
+.arrow {
+    width: 20px;
+}
+.word {
+    font-family: 'Nunito Sans';
+    font-weight: 600;
+    margin-left: 10px; 
+}
+.content {
+    padding-top: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.image {
+    width: 700px;
+}
+.title {
+    margin-left: 40px;
+    font-size: 40px;
+}
+.other {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.item {
+    list-style-type: none;
+    font-family: 'Nunito Sans';
+    font-size: 20px;
+    font-weight: 600;
+    &:not(:last-child){
+      margin-bottom: 7px;
+    }
+}
+.wordCountry {
+    font-size: 18px;
+    padding: 5px 15px;
+    border: #FFF;
+    border-radius: 10px;
+    box-shadow: 0 0 6px black;
+    &:not(:last-child){
+      margin-right: 20px;
+    }
+}

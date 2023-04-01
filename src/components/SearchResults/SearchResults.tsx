@@ -1,12 +1,10 @@
 import React, {FC, useEffect, useState} from 'react'
-import { Container, Country } from './Main'
+import { Country } from '../Main/Main'
 import { Link, Routes, Route, useParams } from 'react-router-dom'
 import axios from 'axios'
-import Card from './Card'
-import Loading from './Loading'
-import { Countries } from './Main'
-import styled from 'styled-components'
-
+import Card from '../Card/Card'
+import Loading from '../Loading/Loading'
+import s from './SearchResults.module.css'
 
 
 
@@ -32,28 +30,22 @@ const SearchResults: FC = () => {
   return (
 
       
-      <Container>
+      <div className={s.container}>
         <Link to={'/'}>
             <button>back</button>
         </Link>
         {isFetching && <Loading />}
-        <HeaderTitle>
+        <h1 className={s.headerTitle}>
             Search for: {value}
-        </HeaderTitle>
-        <Countries>
+        </h1>
+        <div className={s.countries}>
             {results.map( //@ts-ignore
                 i => <Card key={i.area} flags={i.flags.svg} name={i.name.common} population={i.population}
                     region={i.region} capital={i.capital} />
             )}
-        </Countries>
-    </Container>
+        </div>
+    </div>
   )
 }
-
-
-const HeaderTitle = styled.h1`
-    margin-bottom: 50px;
-    font-weight: 800;
-`
 
 export default SearchResults

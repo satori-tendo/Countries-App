@@ -1,0 +1,88 @@
+.wrapper {
+    padding: 60px 0px 0px 0px;
+}
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+@media (max-width: 1460px) {
+    .container {
+        max-width: 1200px;
+   }
+}
+@media (max-width: 1200px) {
+    .container {
+        max-width: 970px;
+   }
+}
+@media (max-width: 992px) {
+    .container {
+        max-width: 750px;
+   }
+}
+@media (max-width: 767px) {
+    .container {
+        max-width: none;
+   }
+}
+.firstRow {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 70px;
+}
+.input {
+    font-family: 'Nunito Sans';
+    font-weight: 600;
+    font-size: 20px;
+    border: 1px solid white;
+    padding: 15px;
+    width: 500px;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px gray;
+}
+@media (max-width: 720px) {
+    .input {
+        margin-bottom: 30px;
+   }
+}
+.select {
+    font-family: 'Nunito Sans';
+    font-weight: 300;
+    font-size: 16px;
+    border: 1px solid white;
+    padding: 15px;
+    width: 200px;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px gray;
+}
+.countries {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 320px);
+    column-gap: 53px;
+    row-gap: 70px;
+}
+@media (max-width: 1460px) {
+    .countries {
+        grid-template-columns: repeat(3, 320px);
+        column-gap: 80px;
+        max-width: 1100px;
+   }
+}
+@media (max-width: 1200px) {
+    .countries {
+        grid-template-columns: repeat(2, 320px);
+        column-gap: 110px;
+        max-width: 750px;
+   }
+}
+@media (max-width: 767px) {
+    .countries {
+        grid-template-columns: 320px;
+        max-width: 320px;
+   }
+}
